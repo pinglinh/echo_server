@@ -13,6 +13,12 @@ class UserEcho
 		@instructions
 	end
 
+	def goodbye_message
+		"Goodbye!"
+	end
+
+	private
+
 	def start
 		@welcome
 		@instructions
@@ -21,27 +27,19 @@ class UserEcho
 
 	def input
 		@@user_input = STDIN.readline.chomp
-		exit_entered
-	end
-
-	def more_input
-		input
+		exit_entered?
 	end
 
 	def exit
-		@@user_input == "exit"
+		@user_input == "exit"
 	end
 
 	def exit_entered?
-		while exit == false
-			more_input
-		else 
+		while exit == true
 			goodbye_message
+		else 
+			input
 		end
-	end
-
-	def goodbye_message
-		"Goodbye!"
 	end
 
 end
