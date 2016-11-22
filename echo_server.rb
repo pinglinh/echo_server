@@ -1,8 +1,6 @@
 class UserEcho
 
   def initialize
-    print_welcome_message
-    print_instruction_message
     start
   end
 
@@ -21,6 +19,8 @@ class UserEcho
   private
 
   def start
+    print_welcome_message
+    print_instruction_message
     input
   end
 
