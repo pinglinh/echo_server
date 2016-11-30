@@ -1,32 +1,29 @@
 class UserEcho
 
-  def initialize
-    start
+  def initialize(view)
+    @view = view
   end
-
-  private
 
   def start
-    print_welcome_message
-    print_instruction_message
-    input
+    @view.print_welcome_message
+    @view.print_instruction_message
+    echo_input
   end
 
-  def input
+ private
+
+
+  def echo_input
     @user_input = STDIN.readline.chomp
-    exit_entered?
-  end
-
-  def exit
-    @user_input == "exit"
+    while !exit_entered? 
+      @view.print_user_input(@user_input)
+      @user_input = STDIN.readline.chomp
+    end
+    @view.print_goodbye_message
   end
 
   def exit_entered?
-    while exit == true
-      print_goodbye_message
-    else 
-      input
-    end
+    @user_input == "exit"
   end
 
 end
@@ -42,7 +39,16 @@ class View
   end
 
   def print_goodbye_message
-    print "Goodbye!"
+    print "Goodbye!\n"
+  end
+
+  def print_user_input(user_input)
+    print user_input + "\n"
   end
   
 end
+
+
+user_view = View.new
+user_echo = UserEcho.new(user_view)
+user_echo.start 
