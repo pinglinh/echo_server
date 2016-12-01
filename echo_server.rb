@@ -12,7 +12,6 @@ class UserEcho
 
  private
 
-
   def echo_input
     @user_input = STDIN.readline.chomp
     while !exit_entered? 
